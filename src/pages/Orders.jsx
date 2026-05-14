@@ -30,7 +30,6 @@ export default function Orders() {
     const fetch = async () => {
       try {
         const data = await getOrdersByUser(user.id);
-        // أحدث أوردر الأول
         setOrders(data.reverse());
       } catch {
         setOrders([]);
