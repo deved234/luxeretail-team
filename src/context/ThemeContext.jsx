@@ -5,7 +5,12 @@ const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) || "light";
+    // جيب الـ theme المحفوظ أو استخدم system preference
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.THEME);
+    if (saved) return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   });
 
   useEffect(() => {
@@ -21,14 +26,15 @@ export function ThemeProvider({ children }) {
   const toggleTheme = () =>
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
+  const isDark = theme === "dark";
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
-// custom hook للاستخدام في أي component
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) throw new Error("useTheme must be used within ThemeProvider");

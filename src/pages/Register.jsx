@@ -70,7 +70,7 @@ export default function Register() {
       </div>
 
       {/* ── Right Panel ──────────────────────────────── */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-white">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-luxe-surface">
         <div className="w-full max-w-md">
           {/* Heading */}
           <div className="mb-8">

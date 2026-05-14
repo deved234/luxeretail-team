@@ -1,3 +1,5 @@
+import { useTheme } from "../../context/ThemeContext";
+import { Sun, Moon } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   Search,
@@ -17,6 +19,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { clsx } from "clsx";
 
 export default function Navbar() {
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuthStore();
   const { logout } = useAuth();
@@ -45,7 +48,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-luxe-border">
+    <header className="sticky top-0 z-40 bg-luxe-surface border-b border-luxe-border">
+      {" "}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* ── Logo ─────────────────────────────────── */}
@@ -78,6 +82,18 @@ export default function Navbar() {
 
           {/* ── Actions ──────────────────────────────── */}
           <div className="flex items-center gap-2">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-luxe-input transition-colors text-luxe-body"
+              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDark ? (
+                <Sun size={20} className="text-amber-400" />
+              ) : (
+                <Moon size={20} />
+              )}
+            </button>
             {/* Search */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
@@ -130,7 +146,7 @@ export default function Navbar() {
                       className="fixed inset-0 z-10"
                       onClick={() => setUserMenuOpen(false)}
                     />
-                    <div className="absolute right-0 top-12 z-20 w-48 bg-white rounded-2xl border border-luxe-border shadow-[0_8px_24px_rgba(0,0,0,0.10)] overflow-hidden">
+                    <div className="absolute right-0 top-12 z-20 w-48 bg-luxe-surface rounded-2xl border border-luxe-border shadow-[0_8px_24px_rgba(0,0,0,0.10)] overflow-hidden">
                       <div className="px-4 py-3 border-b border-luxe-border">
                         <p className="text-sm font-semibold text-luxe-text truncate">
                           {user?.name}
@@ -214,7 +230,8 @@ export default function Navbar() {
 
         {/* ── Mobile Menu ──────────────────────────────── */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-luxe-border py-4 flex flex-col gap-1">
+           <div className="md:hidden border-t border-luxe-border py-4 flex flex-col gap-1 bg-luxe-surface">
+
             {navLinks.map((link) => (
               <NavLink
                 key={link.label}

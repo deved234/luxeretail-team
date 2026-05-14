@@ -17,8 +17,24 @@
   --color-luxe-text: #111827;
   --color-luxe-body: #374151;
   --color-luxe-muted: #6B7280;
+  --color-luxe-placeholder: #9CA3AF;
 
   --font-family-sans: 'Inter', sans-serif;
+}
+
+/* ── Dark Mode Variables ─────────────────────────────── */
+.dark {
+  --color-luxe-bg: #0F0F14;
+  --color-luxe-surface: #1A1A24;
+  --color-luxe-input: #252535;
+  --color-luxe-border: #2E2E42;
+  --color-luxe-text: #F9FAFB;
+  --color-luxe-body: #D1D5DB;
+  --color-luxe-muted: #9CA3AF;
+  --color-luxe-placeholder: #6B7280;
+
+  --color-brand-light: #1E2456;
+  --color-brand-success-bg: #0D2E22;
 }
 
 *,
@@ -34,10 +50,11 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #F5F5FA;
-  color: #111827;
+  background-color: var(--color-luxe-bg);
+  color: var(--color-luxe-text);
   line-height: 1.6;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::-webkit-scrollbar {
@@ -94,7 +111,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #F0F0F5 25%, #E8E8EF 50%, #F0F0F5 75%);
+  background: linear-gradient(90deg, var(--color-luxe-input) 25%, var(--color-luxe-border) 50%, var(--color-luxe-input) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
