@@ -1,0 +1,13 @@
+src/components/features/cart/CartDrawer.jsx
+src/hooks/useAuth.js
+src/hooks/useCart.js
+src/pages/Cart.jsx
+src/pages/Checkout.jsx
+src/pages/Login.jsx
+src/pages/Register.jsx
+src/services/authService.js
+src/services/orderService.js
+src/store/useAuthStore.js
+src/store/useCartStore.js
+src/validation/authSchema.js
+src/validation/checkoutSchema.js
